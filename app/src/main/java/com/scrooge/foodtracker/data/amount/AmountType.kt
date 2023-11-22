@@ -5,5 +5,5 @@ enum class AmountType {
     Volume,
     Amount;
 
-    val baseUnit: AmountUnit by lazy { AmountUnit.values().find { it.type == this && it.baseUnitMultiple == 1.0 }!!  }
+    val baseUnit: AmountUnit by lazy { AmountUnit.values().find { it.type == this && it.multipleOfBaseUnit == 1.0 }!!  }
 }

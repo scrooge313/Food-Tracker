@@ -1,6 +1,6 @@
 package com.scrooge.foodtracker.data.amount
 
-enum class AmountUnit(val type: AmountType, val baseUnitMultiple: Double) {
+enum class AmountUnit(val type: AmountType, val multipleOfBaseUnit: Double) {
     Gram(AmountType.Weight, 1.0),
     Kilogram(AmountType.Weight, 1000.0),
 

@@ -19,9 +19,9 @@ data class AmountConversion(
         require(toUnit.type == targetUnit.type)
         return Amount(
             amount.amountInUnit *
-            amount.unit.baseUnitMultiple / fromUnit.baseUnitMultiple *
+            amount.unit.multipleOfBaseUnit / fromUnit.multipleOfBaseUnit *
             factor *
-            toUnit.baseUnitMultiple / targetUnit.baseUnitMultiple,
+            toUnit.multipleOfBaseUnit / targetUnit.multipleOfBaseUnit,
             targetUnit
         )
     }
