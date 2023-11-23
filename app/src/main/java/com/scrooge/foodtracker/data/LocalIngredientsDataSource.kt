@@ -10,7 +10,7 @@ class LocalIngredientsDataSource {
         return listOf(
             Ingredient(
                 name = "Garlic",
-                searchNames = setOf("Knoblauch"),
+                alternativeNames = setOf("Knoblauch"),
                 nutritionPerAmount = NutritionPerAmount(
                     1.piece,
                     Nutrition(

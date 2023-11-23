@@ -5,12 +5,14 @@ import com.scrooge.foodtracker.data.amount.AmountConversion
 
 data class Ingredient(
     val name: String,
-    val searchNames: Set<String>,
+    val alternativeNames: Set<String>,
     val nutritionPerAmount: NutritionPerAmount,
     val amountConversions: List<AmountConversion>,
+    val imageUrl: String? = null,
+    // TODO WIP val pieceSynonym: String? = null, // e.g. "clove", "slice"
 ) {
     init {
-        require(!searchNames.contains(name))
+        require(!alternativeNames.contains(name))
         require(amountConversions.all {
             it.fromUnit.type != it.toUnit.type
         })
@@ -19,6 +21,6 @@ data class Ingredient(
         })
     }
 
-    val names: Set<String>
-        get() = searchNames + name
+    val searchNames: Set<String>
+        get() = alternativeNames + name
 }

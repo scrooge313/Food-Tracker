@@ -9,7 +9,7 @@ class IngredientsRepository(
         val searchTerms = searchTerm.split(" ", ",", ";", ".")
         val allIngredients = localDataSource.getAllIngredients()
         return allIngredients.filter { ingredient: Ingredient ->
-            ingredient.names.any { name ->
+            ingredient.searchNames.any { name ->
                 searchTerms.contains(name)
             }
         }
