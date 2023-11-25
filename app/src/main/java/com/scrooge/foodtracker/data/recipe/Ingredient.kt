@@ -4,6 +4,7 @@ import com.scrooge.foodtracker.data.NutritionPerAmount
 import com.scrooge.foodtracker.data.amount.AmountConversion
 
 data class Ingredient(
+    val id: String,
     val name: String,
     val alternativeNames: Set<String>,
     val nutritionPerAmount: NutritionPerAmount,
