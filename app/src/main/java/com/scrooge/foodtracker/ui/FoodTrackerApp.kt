@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.scrooge.foodtracker.ui.ingredientssearchscreen.IngredientInfoScreen
+import com.scrooge.foodtracker.ui.ingredientssearchscreen.IngredientInfoViewModel
 import com.scrooge.foodtracker.ui.ingredientssearchscreen.IngredientsSearchScreen
 
 @Composable
@@ -33,7 +34,7 @@ fun FoodTrackerApp(
         composable("ingredients/{ingredientId}") {
             val ingredientId = it.arguments!!.getString("ingredientId")!!
             IngredientInfoScreen(
-                ingredientId = ingredientId,
+                viewModel = IngredientInfoViewModel(ingredientId),
                 onBackButtonClick = ::navigateBackButton,
                 modifier = modifier,
             )
