@@ -17,9 +17,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.scrooge.foodtracker.data.NutritionPerAmount
 import com.scrooge.foodtracker.data.recipe.Ingredient
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun IngredientsSearchScreen() {
+fun IngredientsSearchScreen(viewModel: IngredientsSearchViewModel = viewModel<IngredientsSearchViewModel>()) {
+    Text(text = viewModel.whatever.x.toString())
 //    IngredientsSearchNavigationBar()
 //    IngredientsSearchResults()
 }
