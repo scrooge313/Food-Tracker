@@ -1,8 +1,15 @@
 package com.scrooge.foodtracker.data
 
+import com.scrooge.foodtracker.data.amount.Amount
+import com.scrooge.foodtracker.data.amount.AmountUnit
+
 data class Nutrition(
-    val kcal: Double?,
-    val proteinsInGrams: Double?,
-    val fatsInGrams: Double?,
-    val carbsInGrams: Double?,
-)
+    val kcal: Amount?,
+    val proteins: Amount?,
+    val fats: Amount?,
+    val carbs: Amount?,
+) {
+    init {
+        require(kcal == null || kcal.unit == AmountUnit.Kcal)
+    }
+}

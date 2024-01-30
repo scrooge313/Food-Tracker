@@ -25,7 +25,7 @@ class AmountUnitTest {
     fun amountTypeBaseUnits_shouldBeExactlyOnePerAmountType() {
         AmountType.values().forEach { type ->
             assertEquals(1, AmountUnit.values().filter { unit ->
-                unit.type == type && unit.multipleOfBaseUnit == 1.0
+                unit.type == type && unit.isBaseUnit
             }.size)
         }
     }

@@ -3,7 +3,8 @@ package com.scrooge.foodtracker.data.amount
 enum class AmountType {
     Weight,
     Volume,
-    Amount;
+    Amount,
+    Energy;
 
-    val baseUnit: AmountUnit by lazy { AmountUnit.values().find { it.type == this && it.multipleOfBaseUnit == 1.0 }!!  }
+    val baseUnit: AmountUnit by lazy { AmountUnit.values().find { it.type == this && it.isBaseUnit }!!  }
 }
