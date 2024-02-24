@@ -38,6 +38,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.scrooge.foodtracker.data.NutritionPerAmount
 import com.scrooge.foodtracker.data.amount.Amount
@@ -49,7 +50,7 @@ import com.scrooge.foodtracker.ui.theme.Typography
 fun IngredientsSearchScreen(
     onIngredientClick: (Ingredient) -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: IngredientsSearchViewModel = hiltViewModel(),
+    viewModel: IngredientsSearchViewModel = hiltViewModel(), // todo check if hiltviewmodel or viewmodel should be used
 ) {
     val uiState by viewModel.uiState.collectAsState()
     Scaffold(
