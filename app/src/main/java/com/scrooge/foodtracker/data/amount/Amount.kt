@@ -2,27 +2,25 @@ package com.scrooge.foodtracker.data.amount
 
 data class Amount(
     val amountInUnit: Double,
-    val unit: AmountUnit,
+    val unit: Unit,
 ) {
-    override fun toString() = "$amountInUnit ${unit.name.lowercase()}"
+    val label = "$amountInUnit ${unit.name.plural(amountInUnit).lowercase()}"
+    val shortLabel = if(unit.shortName == unit.name) label else "$amountInUnit${unit.shortName}"
+
+    override fun toString() = shortLabel
 }
 
-val Number.gram: Amount
+val Number.g: Amount
     get() {
-        return Amount(this.toDouble(), AmountUnit.Gram)
+        return Amount(this.toDouble(), Gram)
     }
 
-val Number.millilitre: Amount
+val Number.mm: Amount
     get() {
-        return Amount(this.toDouble(), AmountUnit.Millilitre)
-    }
-
-val Number.piece: Amount
-    get() {
-        return Amount(this.toDouble(), AmountUnit.Piece)
+        return Amount(this.toDouble(), Millilitre)
     }
 
 val Number.kcal: Amount
     get() {
-        return Amount(this.toDouble(), AmountUnit.Kcal)
+        return Amount(this.toDouble(), Kcal)
     }

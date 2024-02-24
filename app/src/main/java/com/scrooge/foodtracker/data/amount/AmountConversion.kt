@@ -2,8 +2,8 @@ package com.scrooge.foodtracker.data.amount
 
 // TODO unit test all of this thoroughly
 data class AmountConversion(
-    val fromUnit: AmountUnit,
-    val toUnit: AmountUnit,
+    val fromUnit: Unit,
+    val toUnit: Unit,
     val factor: Double,
 ) {
     constructor(
@@ -14,14 +14,14 @@ data class AmountConversion(
     val inversion: AmountConversion
         get() = AmountConversion(toUnit, fromUnit, 1 / factor)
 
-    fun convert(amount: Amount, targetUnit: AmountUnit = toUnit): Amount {
+    fun convert(amount: Amount, targetUnit: Unit = toUnit): Amount {
         require(fromUnit.type == amount.unit.type)
         require(toUnit.type == targetUnit.type)
-        return Amount(
+        return Amount( // TODO multiple of base unit does no longer necessarily exist
             amount.amountInUnit *
-            amount.unit.multipleOfBaseUnit / fromUnit.multipleOfBaseUnit *
-            factor *
-            toUnit.multipleOfBaseUnit / targetUnit.multipleOfBaseUnit,
+//            amount.unit.multipleOfBaseUnit / fromUnit.multipleOfBaseUnit *
+            factor * 1,
+//            toUnit.multipleOfBaseUnit / targetUnit.multipleOfBaseUnit,
             targetUnit
         )
     }
