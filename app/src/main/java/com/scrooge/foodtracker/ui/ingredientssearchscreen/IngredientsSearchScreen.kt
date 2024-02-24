@@ -49,7 +49,7 @@ import com.scrooge.foodtracker.ui.theme.Typography
 fun IngredientsSearchScreen(
     onIngredientClick: (Ingredient) -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: IngredientsSearchViewModel = viewModel(),
+    viewModel: IngredientsSearchViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
     Scaffold(

@@ -73,7 +73,7 @@ dependencies {
 
     // Viewmodel
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1") // viewModel()
-
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0") // hiltViewModel()
 
     // Hilt
     implementation("com.google.dagger:hilt-android:2.50")
