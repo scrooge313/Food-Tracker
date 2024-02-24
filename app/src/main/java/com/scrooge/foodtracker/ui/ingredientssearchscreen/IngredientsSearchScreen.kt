@@ -52,6 +52,11 @@ fun IngredientsSearchScreen(
     modifier: Modifier = Modifier,
     viewModel: IngredientsSearchViewModel = hiltViewModel(), // todo check if hiltviewmodel or viewmodel should be used
 ) {
+//    val uiState by viewModel.otherState.collectAsState()
+//    Text("hello")
+//    uiState.forEach {
+//        Text(it.description)
+//    }
     val uiState by viewModel.uiState.collectAsState()
     Scaffold(
         topBar = {

@@ -20,6 +20,17 @@ class IngredientsSearchViewModel @Inject constructor() : ViewModel() {
     val _uiState = MutableStateFlow(IngredientsSearchUiState(emptyList()))
     val uiState = _uiState.asStateFlow()
 
+    val _otherState = MutableStateFlow(emptyList<SearchResultFood>())
+    val otherState = _otherState.asStateFlow()
+
+//    init {
+//        viewModelScope.launch(Dispatchers.IO) {
+//            _otherState.emit(
+//                fdcDataSource.searchIngredients("garlic")
+//            )
+//        }
+//    }
+
     fun searchIngredients(searchTerm: String) {
         if(searchTerm.isNullOrBlank()) {
             _uiState.update {

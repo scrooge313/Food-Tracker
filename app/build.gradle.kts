@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("org.openapi.generator")
 }
 
 android {
@@ -49,6 +50,10 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    sourceSets {
+        val main by getting
+        main.kotlin.srcDir("${project.buildDir}/clients/fdc/src/main/kotlin")
+    }
 }
 
 dependencies {
@@ -78,9 +83,40 @@ dependencies {
     // Hilt
     implementation("com.google.dagger:hilt-android:2.50")
     kapt("com.google.dagger:hilt-android-compiler:2.50")
+
+    // OkHttp
+    implementation("androidx.media3:media3-datasource-okhttp:1.2.1")
+
+    // Client related dependencies
+    implementation("com.squareup.moshi:moshi:1.15.1")
+    implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
 }
 
 // Allow references to generated code
 kapt {
     correctErrorTypes = true
+}
+
+tasks.register("generateFdcClient", org.openapitools.generator.gradle.plugin.tasks.GenerateTask::class) {
+    group = "my tasks"
+    val targetPackage = "gov.usda.fdc"
+    input = project.file("${project.rootDir}/apis/fdc.yaml").path
+    outputDir.set("${project.buildDir}/clients/fdc")
+    packageName.set(targetPackage)
+    modelPackage.set("$targetPackage.model")
+    apiPackage.set("$targetPackage.api")
+    generatorName.set("kotlin")
+
+    additionalProperties.set(
+        mapOf(
+            "removeEnumValuePrefix" to false,
+        )
+    )
+    configOptions.set(
+        mapOf(
+            "withInterfaces" to "true",
+            "withSeparateModelsAndApi" to "true",
+            "enumPropertyNaming" to "PascalCase",
+        )
+    )
 }
