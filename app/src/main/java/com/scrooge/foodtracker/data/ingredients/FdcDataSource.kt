@@ -1,4 +1,4 @@
-package com.scrooge.foodtracker.data.datasources
+package com.scrooge.foodtracker.data.ingredients
 
 import dagger.Module
 import dagger.Provides
@@ -10,12 +10,10 @@ import okhttp3.OkHttpClient
 import javax.inject.Inject
 
 class FdcDataSource @Inject constructor(private val fdcApi: FDCApi) {
-    fun searchIngredients(searchTerm: String): List<SearchResultFood> {
+    suspend fun searchIngredients(searchTerm: String): List<SearchResultFood> {
         return fdcApi.getFoodsSearch(
             query = searchTerm,
             dataType = listOf(FDCApi.DataTypeGetFoodsSearch.Foundation),
-            sortBy = FDCApi.SortByGetFoodsSearch.LowercaseDescriptionPeriodKeyword,
-            sortOrder = FDCApi.SortOrderGetFoodsSearch.Asc
         ).foods ?: emptyList()
     }
 }

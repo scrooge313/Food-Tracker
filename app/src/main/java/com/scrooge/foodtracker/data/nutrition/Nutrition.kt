@@ -1,4 +1,4 @@
-package com.scrooge.foodtracker.data
+package com.scrooge.foodtracker.data.nutrition
 
 import com.scrooge.foodtracker.data.amount.Amount
 import com.scrooge.foodtracker.data.amount.Kcal

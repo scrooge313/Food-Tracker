@@ -1,6 +1,6 @@
-package com.scrooge.foodtracker.data.recipe
+package com.scrooge.foodtracker.data.ingredients
 
-import com.scrooge.foodtracker.data.NutritionPerAmount
+import com.scrooge.foodtracker.data.nutrition.NutritionPerAmount
 import com.scrooge.foodtracker.data.amount.AmountConversion
 
 data class Ingredient(

@@ -1,7 +1,6 @@
 package com.scrooge.foodtracker.ui.ingredientssearchscreen
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,13 +8,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -37,26 +33,25 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.scrooge.foodtracker.data.NutritionPerAmount
+import com.scrooge.foodtracker.data.nutrition.NutritionPerAmount
 import com.scrooge.foodtracker.data.amount.Amount
-import com.scrooge.foodtracker.data.recipe.Ingredient
+import com.scrooge.foodtracker.data.amount.g
+import com.scrooge.foodtracker.data.amount.kcal
+import com.scrooge.foodtracker.data.ingredients.IngredientSource
+import com.scrooge.foodtracker.data.ingredients.SearchResultIngredient
+import com.scrooge.foodtracker.data.nutrition.Nutrition
 import com.scrooge.foodtracker.ui.theme.Typography
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun IngredientsSearchScreen(
-    onIngredientClick: (Ingredient) -> Unit,
+    onIngredientClick: (SearchResultIngredient) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: IngredientsSearchViewModel = hiltViewModel(), // todo check if hiltviewmodel or viewmodel should be used
 ) {
-//    val uiState by viewModel.otherState.collectAsState()
-//    Text("hello")
-//    uiState.forEach {
-//        Text(it.description)
-//    }
     val uiState by viewModel.uiState.collectAsState()
     Scaffold(
         topBar = {
@@ -136,8 +131,8 @@ fun IngredientsSearchField(
 
 @Composable
 fun IngredientsSearchResults(
-    ingredients: List<Ingredient>,
-    onIngredientClick: (Ingredient) -> Unit,
+    ingredients: List<SearchResultIngredient>,
+    onIngredientClick: (SearchResultIngredient) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -158,7 +153,7 @@ fun IngredientsSearchResults(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun IngredientSearchResultCard(
-    ingredient: Ingredient,
+    ingredient: SearchResultIngredient,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -221,8 +216,22 @@ fun Macro(label: String, amountInGrams: Amount?, modifier: Modifier = Modifier) 
             .fillMaxWidth()
     ) {
         Text("${label}:")
-        if(amountInGrams != null) {
-            Text(amountInGrams.toString())
-        }
+        Text(amountInGrams?.shortLabel ?: "-")
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun IngredientResultCard() {
+    IngredientSearchResultCard(
+        ingredient = SearchResultIngredient(
+            source = IngredientSource.Fdc,
+            id = "some-id",
+            imageUrl = null,
+            name = "Garlic",
+            nutritionPerAmount = NutritionPerAmount(100.g, Nutrition(100.kcal, 20.g, 20.g, 32.135235232.g)),
+            debug = "DEBUG STRING"
+        ),
+        onClick = { /*TODO*/ }
+    )
 }

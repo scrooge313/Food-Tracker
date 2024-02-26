@@ -26,7 +26,7 @@ fun FoodTrackerApp(
         composable("ingredients") {
             IngredientsSearchScreen(
                 onIngredientClick = {
-                    navController.navigate("ingredients/${it.id}")
+                    navController.navigate("ingredients/${it.source.name}-${it.id}")
                 },
                 modifier = modifier,
             )

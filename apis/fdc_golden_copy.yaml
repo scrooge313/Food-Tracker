@@ -787,14 +787,6 @@ components:
         derivationDescription:
           type: string
           example: "Calculated from a daily value percentage per serving size measure"
-        # manually added
-        value:
-          type: number
-          format: float
-          example: 0.53
-        nutrientName:
-          type: string
-          example: "mg"
 
     FoodNutrient:
       required:
